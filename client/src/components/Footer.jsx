@@ -49,13 +49,18 @@ export default function FooterCom() {
               <Footer.Title title="Rejoignez-nous" />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href="https://www.github.com/sahandghavidel"
+                  href="https://www.facebook.com/agencebonnesondes"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Facebook
                 </Footer.Link>
-                <Footer.Link href="#">Instagram</Footer.Link>
+                <Footer.Link
+                  href="https://www.instagram.com/lesbonnesondes_podcasts/"
+                  target="_blank"
+                >
+                  Instagram
+                </Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
@@ -70,15 +75,31 @@ export default function FooterCom() {
         <Footer.Divider />
         <div className="w-full sm:flex sm:items-center sm:justify-between">
           <Footer.Copyright
-            href="#"
+            href="/"
             by="Les Bonnes Ondes"
             year={new Date().getFullYear()}
           />
           <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
-            <Footer.Icon href="#" icon={BsFacebook} />
-            <Footer.Icon href="#" icon={BsInstagram} />
-            <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon href="#" icon={BsLinkedin} />
+            <Footer.Icon
+              href="https://www.facebook.com/agencebonnesondes"
+              target="_blank"
+              icon={BsFacebook}
+            />
+            <Footer.Icon
+              href="https://www.instagram.com/lesbonnesondes_podcasts/"
+              target="_blank"
+              icon={BsInstagram}
+            />
+            <Footer.Icon
+              href="https://twitter.com/ondes_les"
+              target="_blank"
+              icon={BsTwitter}
+            />
+            <Footer.Icon
+              href="https://www.linkedin.com/company/les-bonnes-ondes-ma/"
+              target="_blank"
+              icon={BsLinkedin}
+            />
           </div>
         </div>
       </div>
