@@ -73,3 +73,17 @@ export const updateUser = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteUser = async (req, res, next) => {
+  if (!req.user.isAdmin && req.user.id !== req.params.userId) {
+    return next(
+      errorHandler(403, "Vous n'êtes pas authorisé à supprimer ce compte")
+    );
+  }
+  try {
+    await User.findByIdAndDelete(req.params.userId);
+    res.status(200).json('Utilisateur a été supprimé');
+  } catch (error) {
+    next(error);
+  }
+};
