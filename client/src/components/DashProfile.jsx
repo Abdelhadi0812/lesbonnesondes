@@ -22,6 +22,7 @@ import {
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
 import { app } from '../firebase';
+import { Link } from 'react-router-dom';
 
 const DashProfile = () => {
   const { currentUser, error, loading } = useSelector((state) => state.user);
@@ -234,6 +235,17 @@ const DashProfile = () => {
         >
           {loading ? 'En cours...' : 'Update'}
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={'/create-post'}>
+            <Button
+              type="button"
+              gradientDuoTone="purpleToPink"
+              className="w-full"
+            >
+              Créer un post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span
