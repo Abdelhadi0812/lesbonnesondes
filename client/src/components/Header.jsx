@@ -12,8 +12,33 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { theme } = useSelector((state) => state.theme);
   const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.theme);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get('searchTerm');
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
+
+  const handleSignout = async () => {
+    try {
+      const res = await fetch('/api/user/signout', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signoutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <Navbar className="border-b-2">
@@ -65,7 +90,9 @@ export default function Header() {
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-            <Dropdown.Item>Se déconnecter</Dropdown.Item>
+            <Dropdown.Item onClick={handleSignout}>
+              Se déconnecter
+            </Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to="/sign-in">
