@@ -1,3 +1,4 @@
+import React from 'react';
 import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -21,6 +22,36 @@ export default function UpdatePost() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const { postId } = useParams();
+
+  // Reference to the ReactQuill component
+  const quillRef = React.createRef();
+
+  // Custom function to handle iframe insertion
+  const insertIframe = () => {
+    const url = prompt('Enter the URL for the iframe:');
+    if (url) {
+      const iframe = `${url}`;
+      const quill = quillRef.current.getEditor(); // Get the quill instance
+      quill.focus();
+      quill.clipboard.dangerouslyPasteHTML(quill.getLength(), iframe);
+    }
+  };
+
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ font: [] }],
+      [{ size: [] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [
+        { list: 'ordered' },
+        { list: 'bullet' },
+        { indent: '-1' },
+        { indent: '+1' },
+      ],
+      ['link', 'image', 'video', 'iframe'],
+    ],
+  };
 
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -112,14 +143,12 @@ export default function UpdatePost() {
   };
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">
-        Modifier le post
-      </h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Update post</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
             type="text"
-            placeholder="Titre"
+            placeholder="Title"
             required
             id="title"
             className="flex-1"
@@ -134,10 +163,20 @@ export default function UpdatePost() {
             }
             value={formData.category}
           >
-            <option value="uncategorized">Selectionner une catégorie</option>
-            <option value="javascript">JavaScript</option>
-            <option value="reactjs">React.js</option>
-            <option value="nextjs">Next.js</option>
+            <option value="tous">Tous les posts</option>
+            <option value="news">News</option>
+            <option value="urgence-climatique">Urgence Climatique</option>
+            <option value="glissa-culturelle">Glissa Culturelle</option>
+            <option value="mdjs">MDJS</option>
+            <option value="documentaire">Reportage / Documentaire</option>
+            <option value="insomnie">Insomnie</option>
+            <option value="micro-confidence">Micro Confidence</option>
+            <option value="web-radio">Web Radio</option>
+            <option value="dima-dayma">Dima Dayma</option>
+            <option value="formation">Formation</option>
+            <option value="thérapie">Thérapie</option>
+            <option value="afterwork">Afterwork</option>
+            <option value="no-logo">No Logo 2022</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
@@ -176,16 +215,26 @@ export default function UpdatePost() {
         )}
         <ReactQuill
           theme="snow"
-          value={formData.content}
           placeholder="Write something..."
+          value={formData.content}
           className="h-72 mb-12"
+          ref={quillRef}
           required
           onChange={(value) => {
             setFormData({ ...formData, content: value });
           }}
+          modules={modules}
         />
+        <Button
+          gradientDuoTone="purpleToPink"
+          outline
+          onClick={insertIframe}
+          className="mt-12"
+        >
+          Ajouter Iframe
+        </Button>
         <Button type="submit" gradientDuoTone="purpleToPink">
-          Modifier le post
+          Update post
         </Button>
         {publishError && (
           <Alert className="mt-5" color="failure">
