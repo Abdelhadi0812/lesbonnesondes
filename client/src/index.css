@@ -13,7 +13,12 @@ body {
 .post-content p {
   margin-bottom: 0.5rem;
 }
-  
+
+.post-content p img {
+  margin: 0 auto;
+}
+
+
 .post-content h1 {
   font-size: 1.5rem;
   font-weight: 600;
