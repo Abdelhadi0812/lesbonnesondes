@@ -26,6 +26,13 @@ app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
 
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    parameterLimit: 100000,
+    limit: '500mb',
+  })
+);
 app.use(bodyParser.json());
 app.use(cookieParser());
 
