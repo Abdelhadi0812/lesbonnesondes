@@ -1,5 +1,6 @@
 import React from 'react';
 import bgVid from '/vidbackground.mp4';
+import { Link } from 'react-router-dom';
 
 const VidBackground = () => {
   return (
@@ -42,6 +43,14 @@ const VidBackground = () => {
               </li>
             </ol>
           </div>
+          <Link
+            to="mailto:contact@lesbonnesondes.ma?subject=contact%20depuis%20lesbonnesondes.ma"
+            className="absolute bottom-0 right-[10%] "
+          >
+            <h6 className="font-semibold underline">
+              Nous contacter : contact@lesbonnesondes.ma
+            </h6>
+          </Link>
         </div>
       </div>
     </div>
