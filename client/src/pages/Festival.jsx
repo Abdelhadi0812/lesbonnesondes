@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, FreeMode, Thumbs } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/thumbs';
 import CallToAction from '../components/CallToAction';
 // Images
 import swipe1 from '/swipe1.webp';
@@ -59,6 +60,8 @@ const images = [
 ];
 
 const Festival = () => {
+  const [thumbSwiper, setThumbSwiper] = useState(null);
+
   return (
     <div className="w-full bg-[#fa7066] flex flex-col justify-center items-center">
       <div className="w-[80%]">
@@ -93,9 +96,15 @@ const Festival = () => {
         </div>
         <div className="w-full flex flex-col justify-center items-center my-8">
           <Swiper
-            navigation
+            loop={true}
+            spaceBetween={10}
+            navigation={true}
+            thumbs={{
+              swiper:
+                thumbSwiper && !thumbSwiper.destroyed ? thumbSwiper : null,
+            }}
             pagination={{ type: 'fraction' }}
-            modules={[Navigation, Pagination]}
+            modules={[Navigation, Pagination, FreeMode, Thumbs]}
             className="h-full w-full rounded-lg"
           >
             {images.map((image, index) => (
@@ -107,6 +116,30 @@ const Festival = () => {
                     className="block h-full w-full object-cover"
                   />
                 </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Thumbnails */}
+          <Swiper
+            onSwiper={setThumbSwiper}
+            loop={true}
+            spaceBetween={12}
+            slidesPerView={4}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Navigation, Thumbs]}
+            className="thumbs mt-3 h-32 w-full rounded-lg"
+          >
+            {images.map((image, index) => (
+              <SwiperSlide key={index}>
+                <button className="w-full h-full flex items-center justify-center">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="block h-full w-full object-cover"
+                  />
+                </button>
               </SwiperSlide>
             ))}
           </Swiper>
