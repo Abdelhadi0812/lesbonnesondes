@@ -4,6 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import CommentSection from '../components/CommentSection';
 import PostCard from '../components/PostCard';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+} from 'react-share';
 
 export default function PostPage() {
   const { postSlug } = useParams();
@@ -11,6 +19,7 @@ export default function PostPage() {
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState(null);
+  const currentPageUrl = window.location.href;
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -77,9 +86,20 @@ export default function PostPage() {
         </span>
       </div>
       <div
-        className="p-3 mx-auto w-full post-content"
+        className="p-3 mx-auto w-full post-content border-b border-slate-500"
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
+      <div className="p-3 mx-auto w-full flex justify-center items-center gap-6">
+        <FacebookShareButton url={currentPageUrl}>
+          <FacebookIcon className="rounded-full w-12 h-12" />
+        </FacebookShareButton>
+        <TwitterShareButton url={currentPageUrl}>
+          <TwitterIcon className="rounded-full w-12 h-12" />
+        </TwitterShareButton>
+        <LinkedinShareButton url={currentPageUrl}>
+          <LinkedinIcon className="rounded-full w-12 h-12" />
+        </LinkedinShareButton>
+      </div>
       <div className="w-full mx-auto">
         <CallToAction />
       </div>
