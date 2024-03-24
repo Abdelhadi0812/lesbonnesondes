@@ -58,7 +58,7 @@ export default function Header() {
         >
           <img src="/thumbnails/Capture.JPG" alt="logo_header" />
         </Link>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="hidden lg:inline">
           <TextInput
             type="text"
             placeholder="Search..."
