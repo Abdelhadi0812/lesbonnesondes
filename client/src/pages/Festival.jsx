@@ -5,17 +5,58 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CallToAction from '../components/CallToAction';
+// Images
+import swipe1 from '/swipe1.webp';
+import swipe2 from '/swipe2.webp';
+import swipe3 from '/swipe3.webp';
+import swipe4 from '/swipe4.webp';
+import swipe5 from '/swipe5.webp';
+import swipe6 from '/swipe6.webp';
+import swipe7 from '/swipe7.webp';
+import swipe8 from '/swipe8.webp';
+import swipe9 from '/swipe9.webp';
+import swipe10 from '/swipe10.webp';
+import swipe11 from '/swipe11.webp';
+import swipe12 from '/swipe12.webp';
+import swipe13 from '/swipe13.webp';
+import swipe14 from '/swipe14.webp';
+import swipe15 from '/swipe15.webp';
+import swipe16 from '/swipe16.webp';
+import swipe17 from '/swipe17.webp';
+import swipe18 from '/swipe18.webp';
+import swipe19 from '/swipe19.webp';
+import swipe20 from '/swipe20.webp';
+import swipe21 from '/swipe21.webp';
+import swipe22 from '/swipe22.webp';
+import swipe23 from '/swipe23.webp';
+import swipe24 from '/swipe24.webp';
 
-const images = [];
-
-for (let i = 1; i <= 24; i++) {
-  const src = `/swipe${i}.webp`;
-  const alt = `Image ${i}`;
-  // @vite-ignore
-  import(/* @vite-ignore */ src).then((module) => {
-    images.push({ src: module.default, alt });
-  });
-}
+const images = [
+  { src: swipe1, alt: 'Swipe1' },
+  { src: swipe2, alt: 'swipe2' },
+  { src: swipe3, alt: 'swipe3' },
+  { src: swipe4, alt: 'swipe4' },
+  { src: swipe5, alt: 'swipe5' },
+  { src: swipe6, alt: 'swipe6' },
+  { src: swipe7, alt: 'swipe7' },
+  { src: swipe8, alt: 'swipe8' },
+  { src: swipe9, alt: 'swipe9' },
+  { src: swipe10, alt: 'swipe10' },
+  { src: swipe11, alt: 'swipe11' },
+  { src: swipe12, alt: 'swipe12' },
+  { src: swipe13, alt: 'swipe13' },
+  { src: swipe14, alt: 'swipe14' },
+  { src: swipe15, alt: 'swipe15' },
+  { src: swipe16, alt: 'swipe16' },
+  { src: swipe17, alt: 'swipe17' },
+  { src: swipe18, alt: 'swipe18' },
+  { src: swipe19, alt: 'swipe19' },
+  { src: swipe20, alt: 'swipe20' },
+  { src: swipe21, alt: 'swipe21' },
+  { src: swipe22, alt: 'swipe22' },
+  { src: swipe23, alt: 'swipe23' },
+  { src: swipe24, alt: 'swipe24' },
+];
 
 const Festival = () => {
   return (
