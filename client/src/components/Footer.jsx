@@ -121,7 +121,7 @@ export default function FooterCom() {
         <div className="w-full bg-teal-400 flex flex-col rounded-lg  ">
           <Modal.Header />
           <div className="bg-[#fa7066] px-6 mx-12  rounded-lg">
-            <h1 className="text-center  text-3xl text-black">
+            <h1 className="text-center  text-3xl text-black mb-4">
               Conditions Générales D'utilisation
             </h1>
             <p>
